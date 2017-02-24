@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+    {% block menu %}
+        {% include "menu.html" with is_about=True %}
+    {% endblock menu %}
+
+{% block content %}
+
+    <div class="about-section">
+        <div class="container">
+            <h2>Про нас</h2>
+            <div class="about-grids">
+                <div class="col-md-5 about-grid">
+                    <img src="{% static "images/about.jpg" %}" class="img-responsive" alt=""/>
+                </div>
+                <div class="col-md-7 about-grid1">
+                    <h4>Валентина&Євген</h4>
+                    <p>Ми творча родина.</br> Тут репрезентована лише маленька частина нашої творчості.
+                        Можливо, на чийсь погляд, не зовсім поєднувана. А саме мистецтво фотографії
+                        та мистецтво малюнку.</br> Фотографії Євгена, а малюнки Валентини.</p>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

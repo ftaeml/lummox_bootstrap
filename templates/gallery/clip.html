@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load thumbnail %}
+{% load i18n %}
+{% block content %}
+
+    <!-- begin content -->
+    <div id="site_content">
+        <!-- start gallery HTML containers -->
+        <div id="gallery" class="content">
+            <div class="slideshow-container">
+                <div id="loading" class="loader"></div>
+                <div id="slideshow" class="slideshow"></div>
+            </div>
+        </div>
+        <div id="thumb-container"> {# Django comment #}
+            <div id="thumbs" class="navigation">
+                {% for t in title_album %}
+                    <h1>{{ t.title }}</h1>
+                {% endfor %}
+                <ul class="thumbs noscript">
+                    {% for img in images %}
+                        <li>
+                            <a class="thumb" href="{{ img.image|thumbnail_url:'gallery' }}"><img src="{{ img.image|thumbnail_url:'mini' }}" alt="{{ img.description}}" /></a>
+                            <div class="caption">
+                                <div class="image-title portfolio_one">&quot;{{ img.description }}&quot;</div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div id="controls" class="controls portfolio_one"></div>
+            <div id="caption" class="caption-container"></div>
+            <div style="clear: both;"></div>
+            <!-- end gallery HTML containers -->
+        </div>
+    </div>
+    <!-- end content -->
+{% endblock %}
+

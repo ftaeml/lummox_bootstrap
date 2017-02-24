@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+    {% block menu %}
+        {% include "menu.html" with is_albums=True %}
+    {% endblock menu %}
+
+{% block content %}
+    <!-- begin content -->
+    <div id="site_content">
+        <div id="left_content">
+            <div id="blog_container">
+                {% for p in paints %}
+                    <h4 class="select"><a href="{% url "album" id=p.pk %}?page={{ albums.number }}">{{ p.title }}</a></h4>
+                    <p>{{ p.description }}<a href="{% url "album" id=p.pk %}"></br>далі...</a></p>
+                {% endfor %}
+            </div>
+
+            <div class="pageLink next">
+
+                {% if paints.has_previous %}
+                    <a href="?page={{ paints.previous_page_number }}">←</a>
+                {% endif %}
+
+                {% for num in paints.paginator.page_range %}
+                    {% if num == paints.number %}
+                        <span class="current"><b>{{ num }}</b></span>
+                    {% else %}
+                        <a href="?page={{ num }}"> {{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if paints.has_next %}
+                    <a href="?page={{ paints.next_page_number }}">→</a>
+                {% endif %}
+
+            </div>
+        </div>
+        <div id="right_content">
+            <img src="{% static "images/albums.jpg" %}" title="contact" alt="contact" /></p>
+        </div>
+    </div>
+    <!-- end content -->
+
+{% endblock %}
